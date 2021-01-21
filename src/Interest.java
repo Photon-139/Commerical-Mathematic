@@ -3,7 +3,7 @@
 import java.util.Scanner;
 
 public class Interest {
-    private double p, r, t, i;
+    private double principle, rate, time, interest;
     private static Scanner m = new Scanner(System.in);
 
     public static void start() {
@@ -25,22 +25,22 @@ public class Interest {
 
     public void setPrinciple() {
         System.out.println("Enter the Principle");
-        this.p = m.nextDouble();
+        this.principle = m.nextDouble();
     }
 
     public void setRate() {
         System.out.println("Enter the Rate");
-        this.r = m.nextDouble();
+        this.rate = m.nextDouble();
     }
 
     public void setTime() {
         System.out.println("Enter the Time");
-        this.t = m.nextDouble();
+        this.time = m.nextDouble();
     }
 
     public void setInterest() {
         System.out.println("Enter the Interest");
-        this.i = m.nextDouble();
+        this.interest = m.nextDouble();
     }
 
     public void values(String choice) {
@@ -74,36 +74,36 @@ public class Interest {
         if (type.equalsIgnoreCase("SI")) {
             switch (choice) {
                 case "i":
-                    this.i = (p * r * t / 100);
+                    this.interest = (principle * rate * time / 100);
                     break;
                 case "p":
-                    this.p = (i * 100) / (r * t);
+                    this.principle = (interest * 100) / (rate * time);
                     break;
                 case "r":
-                    this.r = (i * 100) / (p * t);
+                    this.rate = (interest * 100) / (principle * time);
                     break;
                 case "t":
-                    this.t = (i * 100) / (p * r);
+                    this.time = (interest * 100) / (principle * rate);
                     break;
             }
         } else if (type.equalsIgnoreCase("CI")) {
             switch (choice) {
                 case "i":
-                    this.i = p * Math.pow((1 + (r / 100)), t) - p;
+                    this.interest = principle * Math.pow((1 + (rate / 100)), time) - principle;
                     break;
                 case "p":
-                    this.p = i / Math.pow((1 + (r / 100)), 2);
+                    this.principle = interest / Math.pow((1 + (rate / 100)), 2);
                     break;
                 case "r":
-                    double x = this.i, y = this.p;
+                    double x = this.interest, y = this.principle;
                     while (x % 2 == 0 && y % 2 == 0) {
                         x /= 2;
                         y /= 2;
                     }
-                    this.r = (Math.pow(x / y, 1 / t) * 100) - 100;
+                    this.rate = (Math.pow(x / y, 1 / time) * 100) - 100;
                     break;
                 case "t":
-                    this.t = (Math.log(i / p)) / Math.log(1 + (r * 0.01));
+                    this.time = (Math.log(interest / principle)) / Math.log(1 + (rate * 0.01));
                     break;
             }
         } else {
@@ -114,16 +114,16 @@ public class Interest {
     public void answers(String choice) {
         switch (choice) {
             case "i":
-                System.out.println("The Interest is " + Math.floor(i));
+                System.out.println("The Interest is " + Math.floor(interest));
                 break;
             case "p":
-                System.out.println("The Principle is " + Math.floor(p));
+                System.out.println("The Principle is " + Math.floor(principle));
                 break;
             case "r":
-                System.out.println("The Rate is " + Math.floor(r) + "%");
+                System.out.println("The Rate is " + Math.floor(rate) + "%");
                 break;
             case "t":
-                System.out.println("The Time is " + Math.floor(t));
+                System.out.println("The Time is " + Math.floor(time));
                 break;
         }
     }
